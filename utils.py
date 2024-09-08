@@ -7,7 +7,7 @@ from pystac_client.item_search import ItemSearch
 from shapely import Polygon
 from typing import List
 
-def print_item_collection_attributes(items):
+def print_item_collection_attributes(items:ItemSearch):
     """
     Print selectd attributes from PyStac ItemCollection.
     """
@@ -157,6 +157,7 @@ def plot_territory(data:np.ndarray, x_dim:int, y_dim:int, cmap:str, title:str):
     Plot the data over the section of the Wet'suwet'en territory under investigation in this tutorial.
     Matplotlib parameters have been set to produce legible and well-formed plots for the tutorial data.
     """
+    
     fig, ax = plt.subplots(figsize=(40, 10))
     cax = ax.imshow(data, cmap=cmap)
     ax.set_title(title,size=40)
