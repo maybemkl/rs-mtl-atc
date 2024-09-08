@@ -22,8 +22,19 @@ def print_item_collection_attributes(items):
               "Missing band data (%):", item.properties['s2:degraded_msi_data_percentage'],"\n",
               "Image area (km^2):", area,"\n")
 
+def plot_single_image_NDVI(ndvi:np.ndarray, x_dim:int, y_dim:int):
+    """
+    Plot a single np.ndarray with NDVI values.
+    """
+    fig, ax = plt.subplots(figsize=(x_dim, y_dim))
+    cax = ax.imshow(ndvi, cmap="Greens")
+    ax.set_title("NDVI on one image", size=40)
+    ax.tick_params(axis='both', which='major', labelsize=20)
+    cbar = fig.colorbar(cax, pad=0.01)
+    cbar.ax.tick_params(labelsize=18) 
+        
 # Code from https://gis.stackexchange.com/questions/480666/how-to-convert-sentinel-2-rgb-bands-to-0-255
-def sentinel2_l2a_to_rgb(image):
+def sentinel2_l2a_to_rgb(image:np.ndarray) -> np.ndarray:
     """
     Convert Sentinel-2 RGB bands to the 0, 255 range.
     """
@@ -59,7 +70,7 @@ def find_intersection_poly(item:Item, bbox_poly:Polygon) -> Polygon:
         item_poly)
     return intersection_poly
 
-def print_assets(item):
+def print_assets(item:Item):
     """
     Prints assets for a PyStac Item.
     """
@@ -141,7 +152,7 @@ def xr_ndvi_data_to_np(xr_data:xr.DataArray) -> np.ndarray:
     
     return np.flipud(xr_data.to_numpy())
 
-def plot_territory(data, x_dim, y_dim, cmap, title):
+def plot_territory(data:np.ndarray, x_dim:int, y_dim:int, cmap:str, title:str):
     """
     Plot the data over the section of the Wet'suwet'en territory under investigation in this tutorial.
     Matplotlib parameters have been set to produce legible and well-formed plots for the tutorial data.
