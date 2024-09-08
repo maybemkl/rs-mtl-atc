@@ -1,0 +1,12 @@
+ipyleaflet==0.19.2
+ipython==8.25.0
+matplotlib==3.9.2
+numpy==2.1.1
+odc_geo==0.4.8
+odc_stac==0.3.10
+pystac==1.10.1
+pystac_client==0.8.3
+Shapely==2.0.6
+stacmap==0.0.4
+tqdm==4.66.5
+xarray==2024.7.0
