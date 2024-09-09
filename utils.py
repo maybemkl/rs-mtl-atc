@@ -137,17 +137,17 @@ def calculate_ndvi_over_items(items:ItemSearch, bands:List[str], bbox:List[float
         ndvis.append(ndvi)
     return ndvis
 
-def calculate_mean_ndvi(ndvis:List[xr.DataArray]) -> xr.DataArray:
+def calculate_median_ndvi(ndvis:List[xr.DataArray]) -> xr.DataArray:
     """
-    Find mean NDVI from list of xr.DataArray objects.
+    Find median NDVI from list of xr.DataArray objects.
     """
     
     print("Concatenating NDVI images.")
     ndvis_xr = xr.concat(ndvis, dim="image").load()
     
     print("Calculating the means, this will take a while.")
-    ndvis_xr_mean = ndvis_xr.median(dim="image")
-    return ndvis_xr_mean
+    ndvis_xr_median = ndvis_xr.median(dim="image")
+    return ndvis_xr_median
 
 def xr_ndvi_data_to_np(xr_data:xr.DataArray) -> np.ndarray:
     """
